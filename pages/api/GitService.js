@@ -1,4 +1,9 @@
 import simpleGit, {SimpleGit} from 'simple-git';
+import path from 'path';
 
-const git = simpleGit();
+const baseDir = path.resolve(__dirname, 'gitrepo');
+const git = simpleGit(baseDir);
 
+export function getDiff(){
+    
+}
