@@ -4,13 +4,13 @@ import fs from 'fs';
 export default (req, res) => {
   res.statusCode = 200;
   if(req.query && req.query.logs){
-    res.type('text/plain');
-    res.send(fs.readFileSync('./logs.txt', 'utf-8'));
+    const logs = fs.readFileSync('./logs.txt', 'utf-8');
+    return res.json({logs});
   }
   const data = { 
     query: req.query, 
     body: req.body,
   };
   fs.writeFileSync('./logs.txt', JSON.stringify(data, null, 4), 'utf8');
-  res.json(data);
+  return res.json(data);
 }
